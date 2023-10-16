@@ -9,7 +9,7 @@ from tensorflow.keras.utils import to_categorical
 # Load the pickled models and keras model
 scaler = joblib.load('scaler.pkl')
 encoder = joblib.load('encoder.pkl')
-model = load_model('iris_nn_model.h5')
+model = joblib.load('lgbm_model.pkl')
 
 # Function to predict
 @st.cache
