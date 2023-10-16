@@ -5,7 +5,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from tensorflow.keras.utils import to_categorical
-!pip install lightgbm
+pip install lightgbm
 
 # Load the pickled models and keras model
 scaler = joblib.load('scaler.pkl')
