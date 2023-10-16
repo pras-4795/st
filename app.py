@@ -3,6 +3,7 @@ import streamlit as st
 from tensorflow.keras.models import load_model
 import joblib
 import numpy as np
+import pandas as pd
 from tensorflow.keras.utils import to_categorical
 
 # Load the pickled models and keras model
@@ -38,6 +39,23 @@ petal_width = st.slider("Petal Width (cm)", 0.1, 2.5, 1.4)
 
 # Arrange the features as an array
 features = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
+
+# Title and instructions
+st.title("CSV File Upload and Prediction Display")
+st.write("Upload a CSV file, and we'll display if there is a chance of default.")
+
+# File uploader widget
+uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
+
+if uploaded_file is not None:
+    # Check if a file has been uploaded
+    df = pd.read_csv(uploaded_file)  # Read the uploaded CSV file into a DataFrame
+
+    # Display the DataFrame
+    st.subheader("DataFrame:")
+    st.dataframe(df)  # Display the DataFrame in the app
+
+    # You can perform further data analysis or visualization on the DataFrame here
 
 # Get the prediction
 prediction = predict(model, scaler, encoder, features)
